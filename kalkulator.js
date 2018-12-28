@@ -2,11 +2,14 @@ let button = document.getElementById('sign2');
 let signId = document.getElementById('sign');
 let equalId = document.getElementById('equal');
 let resultId = document.getElementById('result');
+let commentId = document.getElementById('comment');
 let firstInputId = document.getElementById('firstInput');
 let secondInputId = document.getElementById('secondInput');
 let result;
+let comment;
 let dataValid = true;
 let dataInvalid = false;
+let noSign = true;
 let inputTag = document.getElementsByTagName('input');
 let buttons = document.getElementsByClassName('sign');
 let inputs = [];
@@ -25,8 +28,9 @@ for (let i = 0; i < inputTag.length; i++) {
 function clearAll() {
     result = '';
     resultId.innerText = '';
-    resultId.removeAttribute('class');
     equalId.innerText = '';
+    comment = '';
+    commentId.innerText ='';
     firstInputId.removeAttribute('class');
     secondInputId.removeAttribute('class');
 }
@@ -35,33 +39,48 @@ function takeInput() {
     firstInput = firstInputId.value;
     secondInput = secondInputId.value;
     inputs = [firstInput, secondInput];
+    let k = 0;
 
-    // sprawdzanie, czy pola są wypełnione
+    // sprawdzanie, czy pola są prawidłowo wypełnione (dla przegladarek nie osługujących input type="number")
     for (i = 0; i < inputs.length; i++) {
-        if (inputs[i] === '') {
-            dataValid = false;
+        if (inputs[i] === '' || isNaN(inputs[i]) || inputs[i] === true || inputs[i] === false) {
+            k = k + i + 1;
+            comment = 'Wypełnij poprawnie wszystkie pola';
+            commentId.innerText = comment;
         }
-        else {
+    }
+    switch(k) {
+        case 0:
             dataValid = true;
-        }
-    }
-    if (firstInput === '') {
-        firstInputId.className = 'no-input';
-    }
-    if (secondInput === '') {
-        secondInputId.className = 'no-input';
+            break;
+        case 1:
+            firstInputId.className = 'no-input';
+            dataValid = false;
+            break;
+        case 2:
+            secondInputId.className = 'no-input';
+            dataValid = false;
+            break;
+        default:
+            firstInputId.className = 'no-input';
+            secondInputId.className = 'no-input';
+            dataValid = false;
+            break;
     }
 }
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].onclick = function () {
-        clearAll();
-        chooseSign(this);
+        if (dataValid === true) {
+            clearAll();
+            chooseSign(this);
+        }
     }
 }
 
 function chooseSign(el) {
     sign = el.innerHTML;
+    noSign = false;
     signId.innerHTML = sign;
     return sign;
 }
@@ -72,42 +91,44 @@ button.onclick = function () {
 
 function calculateResult(sign) {
     takeInput();
-    // liczenie i walidacja wyniku
-    if (dataValid === true) {
-        dataInvalid = false;
-        firstNumber = Number(firstInput);
-        secondNumber = Number(secondInput);
-        console.log(firstNumber, secondNumber);
-        if (sign === '+') {
-            result = firstNumber + secondNumber;
+
+    // liczenie i walidacja dla dzielenia przez 0
+    dataInvalid = false;
+    firstNumber = Number(firstInput);
+    secondNumber = Number(secondInput);
+    console.log(firstNumber, secondNumber);
+    
+    if (sign === '+') {
+        result = firstNumber + secondNumber;
+    }
+    else if (sign === '-') {
+        result = firstNumber - secondNumber;
+    }
+    else if (sign === '/') {
+        result = firstNumber / secondNumber;
+        if (secondNumber === 0) {
+            dataInvalid = true;
         }
-        else if (sign === '-') {
-            result = firstNumber - secondNumber;
-        }
-        else if (sign === '/') {
-            result = firstNumber / secondNumber;
-            if (secondNumber === 0) {
-                dataInvalid = true;
-            }
-        }
-        else {
-            result = firstNumber *= secondNumber;
-        }
+    }
+    else if (sign === '<span>*</span>') {
+        result = firstNumber * secondNumber;
     }
     showResult();
 }
 
 function showResult() {
-    if (dataInvalid === false && dataValid === true) {
+    if (dataInvalid === false && dataValid === true && noSign === false) {
         equalId.innerText = '=';
+        resultId.innerText = result;
     }
     else if (dataValid === false) {
-        result = 'Wypełnij wszystkie pola';
-        resultId.className = 'invalid';
+        comment = 'Wypełnij poprawnie wszystkie pola';
+    }
+    else if (noSign === true) {
+        comment = 'Wybierz działanie';
     }
     else {
-        result = 'Podałeś nieprawidłowe dane!';
-        resultId.className = 'invalid';
+        comment = 'Podałeś nieprawidłowe dane!'; 
     }
-    resultId.innerText = result;
+    commentId.innerText = comment;
 }

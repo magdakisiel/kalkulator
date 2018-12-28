@@ -1,24 +1,35 @@
 $font-size: 20px;
 $button-color: rgb(61, 36, 119);
 $label-color: rgb(136, 130, 130);
+$input-color: lighten($label-color, 20%);
 $bRadius: 5px;
-$max-width: 500px;
+$max-width: 430px;
+$input-border: solid 0.5px $input-color;
 
 @mixin button() {
     background-color: $button-color;
     color: white;
     font-size: 1.5 * $font-size;
-    border: solid 2px $button-color;
-    border-radius: $bRadius;
-	-moz-border-radius: $bRadius;
-    -webkit-border-radius: $bRadius;
     padding: 10px 20px;
     margin: 10px;
 }
 
+@mixin border($border: solid 2px $button-color) {
+    border: $border;
+    border-radius: $bRadius;
+	-moz-border-radius: $bRadius;
+    -webkit-border-radius: $bRadius;
+}
+
 @mixin hover() {
     cursor: pointer;
-    background-color: saturate($color: $button-color, $amount: 80%)
+    background-color: saturate($button-color, 80%);
+}
+
+@mixin width() {
+    width: 90%;
+    display: flex;
+    margin: auto;
 }
 
 body {
@@ -34,30 +45,29 @@ body {
 }
 
 .inputs {
-    display: flex;
-    margin: 20px 0;
-    min-height: 70px;
+    @include width();
+    justify-content: space-evenly;
+    min-height: 80px;
     & div {
         width: 10%;
         flex-direction: column;
     }
     .input {
-        width: 25%;
+        width: 30%;
         input {
             width: 100%;
         }
     }
     .signs {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        justify-content: center;
         & div {
             width: 100%;
+            padding-left: 7px;
         }
     }
     .result {
         @extend .signs;
-        width: 30%;
         & div {
             text-align: left;
         }
@@ -69,8 +79,14 @@ label {
     color: $label-color;
 }
 
+input {
+    @include border($input-border);
+    padding: 7px;
+}
+
 button {
     @include button();
+    @include border();
     &:hover {
         @include hover();
     }
@@ -80,7 +96,9 @@ button {
     }
 }
 
-.invalid {
+#comment {
+    @include width();
+    padding-bottom: 20px;
     font-size: 0.8 * $font-size;
     font-weight: 550;
     color: red;

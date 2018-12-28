@@ -6,35 +6,34 @@ body {
 }
 
 #container {
-  max-width: 500px;
+  max-width: 430px;
   margin: auto;
 }
 
 .inputs {
+  width: 90%;
   display: flex;
-  margin: 20px 0;
-  min-height: 70px;
+  margin: auto;
+  justify-content: space-evenly;
+  min-height: 80px;
 }
 .inputs div {
   width: 10%;
   flex-direction: column;
 }
 .inputs .input {
-  width: 25%;
+  width: 30%;
 }
 .inputs .input input {
   width: 100%;
 }
 .inputs .signs, .inputs .result {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: center;
 }
 .inputs .signs div, .inputs .result div {
   width: 100%;
-}
-.inputs .result {
-  width: 30%;
+  padding-left: 7px;
 }
 .inputs .result div {
   text-align: left;
@@ -45,16 +44,24 @@ label {
   color: #888282;
 }
 
+input {
+  border: solid 0.5px #bab6b6;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 7px;
+}
+
 button {
   background-color: #3d2477;
   color: white;
   font-size: 30px;
+  padding: 10px 20px;
+  margin: 10px;
   border: solid 2px #3d2477;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  padding: 10px 20px;
-  margin: 10px;
 }
 button:hover {
   cursor: pointer;
@@ -65,7 +72,11 @@ button span {
   top: 7px;
 }
 
-.invalid {
+#comment {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  padding-bottom: 20px;
   font-size: 16px;
   font-weight: 550;
   color: red;
