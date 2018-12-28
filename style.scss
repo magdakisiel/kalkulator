@@ -1,0 +1,91 @@
+$font-size: 20px;
+$button-color: rgb(61, 36, 119);
+$label-color: rgb(136, 130, 130);
+$bRadius: 5px;
+$max-width: 500px;
+
+@mixin button() {
+    background-color: $button-color;
+    color: white;
+    font-size: 1.5 * $font-size;
+    border: solid 2px $button-color;
+    border-radius: $bRadius;
+	-moz-border-radius: $bRadius;
+    -webkit-border-radius: $bRadius;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+@mixin hover() {
+    cursor: pointer;
+    background-color: saturate($color: $button-color, $amount: 80%)
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: $font-size;
+    margin: 0;
+    text-align: center;
+}
+
+#container {
+    max-width: $max-width;
+    margin: auto;
+}
+
+.inputs {
+    display: flex;
+    margin: 20px 0;
+    min-height: 70px;
+    & div {
+        width: 10%;
+        flex-direction: column;
+    }
+    .input {
+        width: 25%;
+        input {
+            width: 100%;
+        }
+    }
+    .signs {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        & div {
+            width: 100%;
+        }
+    }
+    .result {
+        @extend .signs;
+        width: 30%;
+        & div {
+            text-align: left;
+        }
+    }
+}
+
+label {
+    font-size: 0.7 * $font-size;
+    color: $label-color;
+}
+
+button {
+    @include button();
+    &:hover {
+        @include hover();
+    }
+    span {
+        position: relative;
+        top: 7px;
+    }
+}
+
+.invalid {
+    font-size: 0.8 * $font-size;
+    font-weight: 550;
+    color: red;
+}
+
+.no-input {
+    border-color: red;
+}

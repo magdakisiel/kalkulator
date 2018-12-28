@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+#container {
+  max-width: 500px;
+  margin: auto;
+}
+
+.inputs {
+  display: flex;
+  margin: 20px 0;
+  min-height: 70px;
+}
+.inputs div {
+  width: 10%;
+  flex-direction: column;
+}
+.inputs .input {
+  width: 25%;
+}
+.inputs .input input {
+  width: 100%;
+}
+.inputs .signs, .inputs .result {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.inputs .signs div, .inputs .result div {
+  width: 100%;
+}
+.inputs .result {
+  width: 30%;
+}
+.inputs .result div {
+  text-align: left;
+}
+
+label {
+  font-size: 14px;
+  color: #888282;
+}
+
+button {
+  background-color: #3d2477;
+  color: white;
+  font-size: 30px;
+  border: solid 2px #3d2477;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #2f009b;
+}
+button span {
+  position: relative;
+  top: 7px;
+}
+
+.invalid {
+  font-size: 16px;
+  font-weight: 550;
+  color: red;
+}
+
+.no-input {
+  border-color: red;
+}
+
+/*# sourceMappingURL=style.css.map */
