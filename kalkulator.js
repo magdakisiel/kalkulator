@@ -16,6 +16,7 @@ let sign;
 
 for (let i = 0; i < inputTag.length; i++) {
     inputTag[i].onchange = function () {
+        console.log('input change');
         clearAll();
         takeInput();
     }
@@ -39,6 +40,9 @@ function takeInput() {
     for (i = 0; i < inputs.length; i++) {
         if (inputs[i] === '') {
             dataValid = false;
+        }
+        else {
+            dataValid = true;
         }
     }
     if (firstInput === '') {
