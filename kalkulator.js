@@ -98,8 +98,12 @@ function calculateResult(sign) {
 }
 
 function showResult() {
-    if (dataInvalid === false) {
+    if (dataInvalid === false && dataValid === true) {
         equalId.innerText = '=';
+    }
+    else if (dataValid === false) {
+        result = 'Wypełnij wszystkie pola';
+        resultId.className = 'invalid';
     }
     else {
         result = 'Podałeś nieprawidłowe dane!';
