@@ -108,6 +108,7 @@ function calculateResult(sign) {
         result = firstNumber / secondNumber;
         if (secondNumber === 0) {
             dataInvalid = true;
+            secondInputId.className = 'no-input';
         }
     }
     else if (sign === '<span>*</span>') {

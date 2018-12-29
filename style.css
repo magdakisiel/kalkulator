@@ -76,9 +76,9 @@ button span {
   width: 90%;
   display: flex;
   margin: auto;
-  padding-bottom: 20px;
+  height: 40px;
   font-size: 16px;
-  font-weight: 550;
+  font-weight: 600;
   color: red;
 }
 

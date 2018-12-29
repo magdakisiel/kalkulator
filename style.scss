@@ -98,9 +98,9 @@ button {
 
 #comment {
     @include width();
-    padding-bottom: 20px;
+    height: 40px;
     font-size: 0.8 * $font-size;
-    font-weight: 550;
+    font-weight: 600;
     color: red;
 }
 
