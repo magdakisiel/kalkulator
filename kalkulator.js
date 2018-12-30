@@ -31,41 +31,24 @@ function clearAll() {
     equalId.innerText = '';
     comment = '';
     commentId.innerText ='';
-    firstInputId.removeAttribute('class');
-    secondInputId.removeAttribute('class');
+    firstInputId.classList.remove('no-input');
+    secondInputId.classList.remove('no-input');
 }
 
 function takeInput() {
     firstInput = firstInputId.value;
     secondInput = secondInputId.value;
     inputs = [firstInput, secondInput];
-    let k = 0;
+    dataValid = true;
 
     // sprawdzanie, czy pola są prawidłowo wypełnione (dla przegladarek nie osługujących input type="number")
     for (i = 0; i < inputs.length; i++) {
         if (inputs[i] === '' || isNaN(inputs[i]) || inputs[i] === true || inputs[i] === false) {
-            k = k + i + 1;
+            inputTag[i].classList.add('no-input');
             comment = 'Wypełnij poprawnie wszystkie pola';
             commentId.innerText = comment;
+            dataValid = false;
         }
-    }
-    switch(k) {
-        case 0:
-            dataValid = true;
-            break;
-        case 1:
-            firstInputId.className = 'no-input';
-            dataValid = false;
-            break;
-        case 2:
-            secondInputId.className = 'no-input';
-            dataValid = false;
-            break;
-        default:
-            firstInputId.className = 'no-input';
-            secondInputId.className = 'no-input';
-            dataValid = false;
-            break;
     }
 }
 
@@ -108,7 +91,7 @@ function calculateResult(sign) {
         result = firstNumber / secondNumber;
         if (secondNumber === 0) {
             dataInvalid = true;
-            secondInputId.className = 'no-input';
+            secondInputId.classList = 'no-input';
         }
     }
     else if (sign === '<span>*</span>') {
