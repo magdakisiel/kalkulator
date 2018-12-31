@@ -14,7 +14,6 @@ let noSign = true;
 
 for (let i = 0; i < inputTag.length; i++) {
     inputTag[i].onchange = function () {
-        console.log('input change');
         clearAll();
         takeInput();
     }
@@ -74,7 +73,6 @@ function calculateResult(sign) {
     dataInvalid = false;
     firstNumber = Number(firstInput);
     secondNumber = Number(secondInput);
-    console.log(firstNumber, secondNumber);
     
     if (sign === '+') {
         result = firstNumber + secondNumber;
