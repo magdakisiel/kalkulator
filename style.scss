@@ -96,7 +96,7 @@ button {
     }
 }
 
-#comment {
+#commentId {
     @include width();
     height: 40px;
     font-size: 0.8 * $font-size;

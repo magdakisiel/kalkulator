@@ -1,21 +1,16 @@
-let button = document.getElementById('sign2');
-let signId = document.getElementById('sign');
-let equalId = document.getElementById('equal');
-let resultId = document.getElementById('result');
-let commentId = document.getElementById('comment');
-let firstInputId = document.getElementById('firstInput');
-let secondInputId = document.getElementById('secondInput');
-let result;
-let comment;
-let dataValid = true;
-let dataInvalid = false;
-let noSign = true;
+let firstInputId = document.getElementById('firstInputId');
+let secondInputId = document.getElementById('secondInputId');
 let inputTag = document.getElementsByTagName('input');
 let buttons = document.getElementsByClassName('sign');
+let result;
+let comment;
 let inputs = [];
 let firstInput;
 let secondInput;
 let sign;
+let dataValid = true;
+let dataInvalid = false;
+let noSign = true;
 
 for (let i = 0; i < inputTag.length; i++) {
     inputTag[i].onchange = function () {
@@ -41,7 +36,7 @@ function takeInput() {
     inputs = [firstInput, secondInput];
     dataValid = true;
 
-    // sprawdzanie, czy pola są prawidłowo wypełnione (dla przegladarek nie osługujących input type="number")
+    // sprawdzanie, czy pola są prawidłowo wypełnione (dla przeglądarek nie osługujących input type="number")
     for (i = 0; i < inputs.length; i++) {
         if (inputs[i] === '' || isNaN(inputs[i]) || inputs[i] === true || inputs[i] === false) {
             inputTag[i].classList.add('no-input');
@@ -68,7 +63,7 @@ function chooseSign(el) {
     return sign;
 }
 
-button.onclick = function () {
+sign2Id.onclick = function () {
     calculateResult(sign);
 }
 
