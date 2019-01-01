@@ -71,24 +71,26 @@ function calculateResult(sign) {
 
     // liczenie i walidacja dla dzielenia przez 0
     dataInvalid = false;
-    firstNumber = Number(firstInput);
-    secondNumber = Number(secondInput);
+    firstNumber = new Big(firstInput);
+    secondNumber = new Big(secondInput);
     
     if (sign === '+') {
-        result = firstNumber + secondNumber;
+        result = firstNumber.plus(secondNumber);
     }
     else if (sign === '-') {
-        result = firstNumber - secondNumber;
+        result = firstNumber.minus(secondNumber);
     }
     else if (sign === '/') {
-        result = firstNumber / secondNumber;
-        if (secondNumber === 0) {
+        if (secondNumber == 0) {
             dataInvalid = true;
             secondInputId.classList = 'no-input';
         }
+        else {
+            result = firstNumber.div(secondNumber);
+        }
     }
     else if (sign === '<span>*</span>') {
-        result = firstNumber * secondNumber;
+        result = firstNumber.times(secondNumber);
     }
     showResult();
 }
